@@ -58,17 +58,15 @@ window.onload = async () => {
     if (populardiv === null) return
 
     const popular = await getMostPopularTitles();
-    const genres = await getGenres()
 
     for (const title of popular) {
 
-        console.log(title)
+      console.log(title)
         populardiv.innerHTML += `<div class="movie">
             <h2>${title.title}</h2>
-            <p>${title.description}</p>
             <p>${title.genres.join(", ")}</p>
             <p>${title.year}</p>
-            <p>${title.director}</p>
+            <p>${title.directors.join(", ")}</p>
             <p>${title.imdb_score}</p>
             <p>${title.votes}</p>
         </div>`;
