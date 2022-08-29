@@ -1,74 +1,76 @@
 // @ts-check
+import { getMostPopularTitles, getGenres, getTitlesByGenre , getMostVotedTitles} from "./api.js";
 
-const API_URL = "http://localhost:8000/api/v1";
+function generateMovieCard(movie) {
+  const { id, title, year, image_url, genres } = movie;
+  const genresList = genres.map((genre) => `<li>${genre}</li>`).join("");
 
-/**
- * @type {(genre: string) => string}
- * @param {string} genre
- * @returns {string}
- */
-const TITLES_BY_GENRE_ENDPOINT = (genre) => `/titles?genre=${genre}`;
-
-/**
- * @type {(genre: number) => string}
- * @param {number} id
- * @returns {string}
- */
-const TITLE_BY_ID_ENDPOINT = (id) => `/titles/${id.toString()}`;
-
-const TITLES_BY_IMDB_ENDPOINT = "/titles?sort_by=-imdb_score";
-const TITLES_BY_VOTES_ENDPOINT = "/titles?sort_by=-votes";
-
-const GENRES_ENDPOINT = "/genres";
-
-/**
- * @type {(url: string) => Promise<any>}
- * @param {string} url
- * @returns {Promise<any>}
- */
-async function get(url) {
-  const response = await fetch(url);
-  const data = await response.json();
-
-  return data.results;
+  return `
+    <div class="movie-card">
+      <img class="movie-card__image" src="${image_url}" alt="${title}">
+      <div class="movie-card__content">
+        <h2 class="movie-card__title">${title}</h2>
+        <h3 class="movie-card__year">${year}</h3>
+        <ul class="movie-card__genres">${genresList}</ul>
+        <button class="movie-card__button" data-id="${id}">More info</button>
+      </div>
+    </div>
+  `;
 }
 
-async function getMostPopularTitles() {
-  return get(`${API_URL}${TITLES_BY_IMDB_ENDPOINT}`);
+function updateBestMovie(movie) {
+  const { title, image_url} = movie;
+
+  /**
+   * @type {HTMLImageElement | null}
+   */
+  // @ts-ignore
+  const bm_image = document.getElementById("best_movie_image");
+  const bm_title = document.getElementById("best_movie_title")
+
+  if (bm_image === null || bm_title === null) return;
+
+  bm_image.src = image_url;
+  bm_title.textContent = title;
 }
 
-async function getMostVotedTitles() {
-  return get(`${API_URL}${TITLES_BY_VOTES_ENDPOINT}`);
-}
-
-async function getTitlesByGenre(genre) {
-  return get(`${API_URL}${TITLES_BY_GENRE_ENDPOINT(genre)}`);
-}
-
-async function getTitleById(id) {
-  return get(`${API_URL}${TITLE_BY_ID_ENDPOINT(id)}`);
-}
-
-async function getGenres() {
-    return get(`${API_URL}${GENRES_ENDPOINT}`);
-}
 window.onload = async () => {
-    const populardiv = document.getElementById("movies");
+  const populardiv = document.getElementById("best_rated_movies");
 
-    if (populardiv === null) return
+  if (populardiv === null) return;
 
-    const popular = await getMostPopularTitles();
+  const popular = await getMostPopularTitles();
 
-    for (const title of popular) {
+  for (const title of popular) {
+    console.log(title)
+    populardiv.innerHTML += generateMovieCard(title);
+  }
 
-      console.log(title)
-        populardiv.innerHTML += `<div class="movie">
-            <h2>${title.title}</h2>
-            <p>${title.genres.join(", ")}</p>
-            <p>${title.year}</p>
-            <p>${title.directors.join(", ")}</p>
-            <p>${title.imdb_score}</p>
-            <p>${title.votes}</p>
-        </div>`;
+  const genres = await getGenres();
+  const randoms = genres.sort(() => 0.5 - Math.random()).slice(0, 3);
+
+  for (let i = 1; i <= randoms.length; i++) {
+    const category_div = document.getElementById(`category_${i}`);
+    const category = randoms[i - 1];
+    if (category_div === null) continue;
+
+    const title = category_div.querySelector("h3");
+
+    if (title === null) continue;
+    title.innerHTML = category.name;
+
+    const movies = await getTitlesByGenre(category.name);
+    const movies_div = category_div.querySelector(".movies");
+
+    if (movies_div === null) continue;
+
+    for (const movie of movies) {
+      movies_div.innerHTML += generateMovieCard(movie);
     }
-}
+  }
+
+  const voteddiv = document.getElementById("best_movie");
+  if (voteddiv === null) return;
+  const voted = await getMostVotedTitles();
+  updateBestMovie(voted[0]);
+};
