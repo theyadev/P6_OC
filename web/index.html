@@ -9,21 +9,26 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="movie_modal" class="movie_modal" data-id="0">
-      <button>Close</button>
-      <h1>Title</h1>
-      <p>Description</p>
-      <img src="public/placeholder.jpeg" alt="" />
-      <p>Genres</p>
-      <p>Release date</p>
-      <p>Rated</p>
-      <p>Imdb rating</p>
-      <p>Director</p>
-      <p>Actors</p>
-      <p>Duration</p>
-      <p>Country</p>
-      <p>Box Office</p>
-      <p>Synopsis</p>
+    <div id="modal" class="movie_modal" data-id="0">
+        <div class="modal__content">
+            <img class="modal__content__image" src="public/placeholder.jpeg" alt="" />
+            <h1 class="modal__content__title">Title</h1>
+            <p class="modal__content__description">Description</p>
+            <div class="modal__content__details">
+                <p>Genres</p>
+                <p>Director</p>
+                <p>Actors</p>
+            </div>
+            <div class="modal__content__details">
+                <p>Release date</p>
+                <p>Rated</p>
+                <p>Imdb rating</p>
+                <p>Duration</p>
+                <p>Country</p>
+                <p>Box Office</p>
+            </div>
+            <button class="modal__content__close-btn" id="close_modal">Close</button>
+        </div>
     </div>
     <div id="best_movie">
       <img src="" alt="" id="best_movie_image" />
