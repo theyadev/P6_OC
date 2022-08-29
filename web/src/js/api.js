@@ -50,7 +50,6 @@ const API_URL = "http://127.0.0.1:7000/api/v1";
  */
 
 /**
- * @type {(genre: string) => string}
  * @param {string} genre
  * @returns {string}
  */
@@ -62,7 +61,6 @@ const TITLES_ENDPOINT = "/titles";
 const GENRES_ENDPOINT = "/genres";
 
 /**
- * @type {(url: string) => Promise<any>}
  * @param {string} url
  * @returns {Promise<any>}
  */
@@ -73,7 +71,6 @@ async function getResults(url) {
 }
 
 /**
- * @type {(url: string) => Promise<any>}
  * @param {string} url
  * @returns {Promise<any>}
  */
