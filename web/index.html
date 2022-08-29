@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="preflight.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <link rel="stylesheet" href="src/css/preflight.css" />
     <title>Document</title>
-</head>
-<body>
-    <div id="best_movie">
-        <img src="" alt="" id="best_movie_image">
-        <h1 id="best_movie_title"></h1>
+  </head>
+  <body>
+    <div id="movie_modal" class="movie_modal" data-id="0">
+      <button>Close</button>
+      <h1>Title</h1>
+      <p>Description</p>
+      <img src="public/placeholder.jpeg" alt="" />
+      <p>Genres</p>
+      <p>Release date</p>
+      <p>Rated</p>
+      <p>Imdb rating</p>
+      <p>Director</p>
+      <p>Actors</p>
+      <p>Duration</p>
+      <p>Country</p>
+      <p>Box Office</p>
+      <p>Synopsis</p>
     </div>
-    <section>
-        <h3>Films les mieux notés</h3>
-        <div id="best_rated_movies" class="movies"></div>
+    <div id="best_movie">
+      <img src="" alt="" id="best_movie_image" />
+      <h1 id="best_movie_title"></h1>
+    </div>
+    <section id="best_rated_movies">
+      <h3>Films les mieux notés</h3>
+      <div class="movies"></div>
     </section>
     <section id="category_1">
-        <h3>Category 1</h3>
-        <div class="movies"></div>
+      <h3>Category 1</h3>
+      <div class="movies"></div>
     </section>
     <section id="category_2">
-        <h3 >Category 2</h3>
-        <div  class="movies"></div>
+      <h3>Category 2</h3>
+      <div class="movies"></div>
     </section>
     <section id="category_3">
-        <h3 >Category 3</h3>
-        <div class="movies"></div>
+      <h3>Category 3</h3>
+      <div class="movies"></div>
     </section>
 
-    <script src="main.js" type="module"></script>
-</body>
+    <script src="src/js/main.js" type="module"></script>
+  </body>
 </html>
