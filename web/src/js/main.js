@@ -23,7 +23,7 @@ function generateMovieCard(movie) {
 
   return `
     <div class="movie-card">
-      <img class="movie-card__image" src="${image_url}" alt="${title}">
+      <img class="movie-card__image" src="${image_url}" alt="${title}'s Cover" onerror="this.onerror=null;this.src='public/placeholder.jpeg';">
       <div class="movie-card__content">
         <h2 class="movie-card__title">${title}</h2>
         <h3 class="movie-card__year">${year}</h3>
@@ -141,7 +141,7 @@ function populateModal(movie) {
     .join("");
 
   modal.innerHTML = `
-    <img class="modal__content__image" src="${image_url}" alt="" />
+    <img class="modal__content__image" src="${image_url}" alt="${title}'s Cover" onerror="this.onerror=null;this.src='public/placeholder.jpeg';" />
     <h1 class="modal__content__title">${title}</h1>
     <p class="modal__content__description">${description}</p>
     <div class="modal__content__details">
