@@ -6,6 +6,10 @@ import { getTitles, getGenres, getTitleById } from "./api.js";
  */
 
 /**
+ * @typedef {import("./api").FullMovie} FullMovie
+ */
+
+/**
  * @typedef {import("./api").Genre} Genre
  */
 
@@ -102,10 +106,81 @@ async function populateMostPopular() {
   updateBestMovie(voted[0]);
 }
 
+/**
+ *
+ * @param {FullMovie} movie
+ */
+function populateModal(movie) {
+  const modal = document.getElementById("modal_content");
+
+  if (modal === null) return;
+
+  const {
+    title,
+    year,
+    image_url,
+    genres,
+    description,
+    directors,
+    actors,
+    date_published,
+    rated,
+    imdb_score,
+    duration,
+    countries,
+    worldwide_gross_income,
+  } = movie;
+
+  const genresList = genres.map((genre) => `<li>${genre}</li>`).join("");
+  const directorsList = directors
+    .map((director) => `<li>${director}</li>`)
+    .join("");
+  const actorsList = actors.map((actor) => `<li>${actor}</li>`).join("");
+  const countriesList = countries
+    .map((country) => `<li>${country}</li>`)
+    .join("");
+
+  modal.innerHTML = `
+    <img class="modal__content__image" src="${image_url}" alt="" />
+    <h1 class="modal__content__title">${title}</h1>
+    <p class="modal__content__description">${description}</p>
+    <div class="modal__content__details">
+        <ul>${genresList}</ul>
+        <ul>${directorsList}</ul>
+        <ul>${actorsList}</ul>
+    </div>
+    <div class="modal__content__details">
+        <p>${date_published}</p>
+        <p>${rated}</p>
+        <p>${imdb_score}</p>
+        <p>${duration}</p>
+        <ul>${countriesList}</ul>
+        <p>${worldwide_gross_income}</p>
+    </div>
+  `;
+}
+
+
+function toggleModal() {
+  const modal = document.getElementById("modal");
+  if (modal === null) return;
+  modal.classList.toggle("modal--visible");
+}
+
 window.onload = async () => {
+  const modal = document.getElementById("modal");
+
+  if (modal === null) return;
+
   await populateBestMovies();
   await populateWithRandomGenres();
   await populateMostPopular();
+
+  const modal_btn = document.getElementById("close_modal");
+
+  if (modal_btn === null) return;
+
+  modal_btn.onclick = toggleModal
 
   /**
    * @type {HTMLButtonElement[]}
@@ -121,7 +196,9 @@ window.onload = async () => {
 
       const title = await getTitleById(parseInt(id));
 
-      console.log(title);
+      populateModal(title);
+
+      toggleModal()
     };
   }
 };

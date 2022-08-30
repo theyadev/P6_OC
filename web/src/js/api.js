@@ -1,6 +1,6 @@
 // @ts-check
 
-const API_URL = "http://127.0.0.1:7000/api/v1";
+const API_URL = "http://127.0.0.1:7500/api/v1";
 
 /**
  * @typedef {Object} Movie -
