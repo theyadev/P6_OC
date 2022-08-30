@@ -82,21 +82,22 @@ async function get(url) {
 }
 
 /**
- * @param {{ genre?: string, sortBy?: "imdb" | "votes" }} params
+ * @param {{ 
+ *  genre?: string;
+ *  sortBy?: "imdb" | "votes";
+ * }} params
  * @returns {Promise<Movie[]>}
  */
-export async function getTitles(
-  params = { genre: undefined, sortBy: undefined }
-) {
+export async function getTitles({ genre, sortBy }) {
   const url_params = [];
 
-  if (params.genre) {
-    url_params.push(PARAM_GENRE(params.genre));
+  if (genre) {
+    url_params.push(PARAM_GENRE(genre));
   }
 
-  if (params.sortBy === "imdb") {
+  if (sortBy === "imdb") {
     url_params.push(PARAM_IMDB);
-  } else if (params.sortBy === "votes") {
+  } else if (sortBy === "votes") {
     url_params.push(PARAM_VOTES);
   }
 

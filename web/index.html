@@ -10,27 +10,78 @@
   </head>
   <body>
     <div id="modal" class="movie_modal" data-id="0">
-        <div class="modal__content">
-            <div id="modal_content"></div>
-            <button class="modal__content__close-btn" id="close_modal">Close</button>
+      <div class="modal__content">
+        <img
+          class="modal__content__image"
+          src="public/placeholder.jpeg"
+          alt="Placeholder's Cover"
+          onerror="this.onerror=null;this.src='public/placeholder.jpeg';"
+        />
+        <h1 class="modal__content__title">Placeholder</h1>
+        <p class="modal__content__description">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+          exercitationem harum facilis, libero omnis maiores amet nesciunt! Esse
+          minus, praesentium labore optio voluptates, necessitatibus quod
+          suscipit maiores architecto consequatur quia reiciendis, voluptas
+          dolores nihil atque. Fugit necessitatibus molestias incidunt possimus
+          earum, illo neque ab inventore fuga omnis iusto exercitationem
+          adipisci?
+        </p>
+        <div class="modal__content__details">
+          <ul class="modal__content__details__genres">
+            Genres
+          </ul>
+          <ul class="modal__content__details_directors">
+            Directors
+          </ul>
+          <ul class="modal__content__details__actors">
+            Actors
+          </ul>
         </div>
+        <div class="modal__content__details">
+          <p class="modal__content__details__date">${date_published}</p>
+          <p class="modal__content__details__rated">${rated}</p>
+          <p class="modal__content__details__score">${imdb_score}</p>
+          <p class="modal__content__details__duration">${duration}</p>
+          <ul class="modal__content__details__countries">
+            ${countriesList}
+          </ul>
+          <p class="modal__content__details__income">
+            ${worldwide_gross_income}
+          </p>
+        </div>
+        <button class="modal__content__close-btn" id="close_modal">
+          Close
+        </button>
+      </div>
     </div>
+
+    <!-- Best Movie -->
+
     <div id="best_movie">
       <img src="" alt="" id="best_movie_image" />
       <h1 id="best_movie_title"></h1>
     </div>
+
+    <!-- Most rated movies -->
+
     <section id="best_rated_movies">
       <h3>Films les mieux notés</h3>
       <div class="movies"></div>
     </section>
+
+    <!-- Categories -->
+
     <section id="category_1">
       <h3>Category 1</h3>
       <div class="movies"></div>
     </section>
+
     <section id="category_2">
       <h3>Category 2</h3>
       <div class="movies"></div>
     </section>
+
     <section id="category_3">
       <h3>Category 3</h3>
       <div class="movies"></div>

@@ -15,14 +15,14 @@ body {
 }
 
 .movie-card__image {
-    height: 16rem;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  height: 16rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .movie-card__title {
-    width: min-content;
+  width: min-content;
 }
 
 .movie_modal {
@@ -50,6 +50,11 @@ body {
 .modal--visible {
   opacity: 1;
   pointer-events: auto;
+}
+
+.modal--visible .modal__content {
+  animation-name: bounce;
+  animation-duration: 1s;
 }
 
 .modal__content {
@@ -107,4 +112,16 @@ body {
 .movie_modal ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-500px);
+  }
+  15% {
+    transform: translateY(100px);
+  }
+  25% {
+    transform: translateY(0px);
+  }
 }
