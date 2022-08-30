@@ -41,6 +41,16 @@ body {
   background-repeat: no-repeat;
 }
 
+.controls__btn {
+  padding: 0;
+  background-color: white;
+  display:block;
+  width: 5%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
 .movie-card__title {
 }
 
