@@ -1,7 +1,7 @@
 // @ts-check
 
 import { getGenres, getTitles } from "./api.js";
-import { generateMovieCard } from "./components.js";
+import { generateCarousel, generateMovieCard } from "./components.js";
 
 /**
  * @typedef {import("./api").Genre} Genre
@@ -30,60 +30,10 @@ export function updateBestMovie(movie) {
   bm_title.textContent = title;
 }
 
-/**
- * @param {Movie[]} movies
- * @param {number} index
- */
-function populateBestMoviesSection(movies, index) {
-  const mov = movies.slice(0).splice(index, 4);
-
-  if (mov.length !== 4 && index >= mov.length - 1)
-    mov.push(...movies.slice(0, 4 - mov.length));
-
-  const best_rated_section = document.querySelector(
-    "#best_rated_movies .movies"
-  );
-
-  best_rated_section?.replaceChildren(...mov.map(generateMovieCard));
-}
-
 export async function populateBestMovies() {
-  const best_rated_section = document.querySelector(
-    "#best_rated_movies .movies"
-  );
-
-  if (best_rated_section === null) return;
-
   const popular = await getTitles({ sortBy: "imdb" });
 
-  /**
-   * @type {HTMLButtonElement}
-   */
-  // @ts-ignore
-  const left_btn = document.querySelector("#best_rated_movies .left");
-  /**
-   * @type {HTMLButtonElement}
-   */
-  // @ts-ignore
-  const right_btn = document.querySelector("#best_rated_movies .right");
-
-  let current_index = 0;
-
-  const max_index = popular.length - 1;
-
-  left_btn.onclick = () => {
-    if (current_index === 0) current_index = max_index;
-    else current_index--;
-    populateBestMoviesSection(popular, current_index);
-  };
-
-  right_btn.onclick = () => {
-    if (current_index === max_index) current_index = 0;
-    else current_index++;
-    populateBestMoviesSection(popular, current_index);
-  };
-
-  populateBestMoviesSection(popular, current_index);
+  generateCarousel(popular, "best_rated_movies");
 }
 
 /**
@@ -100,13 +50,8 @@ export async function populateGenre(index, genre) {
   title.innerHTML = genre.name;
 
   const movies = await getTitles({ genre: genre.name });
-  const movies_div = genre_div.querySelector(".movies");
 
-  if (movies_div === null) return;
-
-  for (const movie of movies) {
-    movies_div.appendChild(generateMovieCard(movie));
-  }
+  generateCarousel(movies, `category_${index}`);
 }
 
 export async function populateWithRandomGenres() {
