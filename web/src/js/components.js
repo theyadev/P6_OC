@@ -114,7 +114,7 @@ function populateSection(movies, index, section) {
  * @param {string} id
  */
 export function generateCarousel(movies, id) {
-  const section = document.getElementById(id)
+  const section = document.getElementById(id);
 
   if (section === null) return;
 
@@ -133,9 +133,11 @@ export function generateCarousel(movies, id) {
   right_btn.classList.add("controls__btn", "right");
   right_btn.innerHTML = '<i class="fas fa-chevron-right"></i>';
 
-  carousel.appendChild(left_btn);
+  if (movies.length > 4) carousel.appendChild(left_btn);
+
   carousel.appendChild(movies_div);
-  carousel.appendChild(right_btn);
+  
+  if (movies.length > 4) carousel.appendChild(right_btn);
 
   section.appendChild(carousel);
 
