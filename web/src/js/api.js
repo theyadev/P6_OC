@@ -49,14 +49,6 @@ const API_URL = "http://127.0.0.1:8000/api/v1";
  * @property {string} name -
  */
 
-/**
- * @param {string} genre
- * @returns {string}
- */
-const PARAM_GENRE = (genre) => `genre=${genre}`;
-const PARAM_IMDB = "sort_by=-imdb_score";
-const PARAM_VOTES = "sort_by=-votes";
-
 const TITLES_ENDPOINT = "/titles";
 const GENRES_ENDPOINT = "/genres";
 
@@ -82,30 +74,47 @@ async function get(url) {
 }
 
 /**
- * @param {{ 
+ * @typedef {"imdb" | "votes"} sortby
+ * @param {{
  *  genre?: string;
- *  sortBy?: "imdb" | "votes";
+ *  sortBy?: sortby[];
  * }} params
  * @returns {Promise<Movie[]>}
  */
 export async function getTitles({ genre, sortBy }) {
-  const url_params = [];
+  /**
+   * @type {{
+   *  genre: string[];
+   *  sort_by: string[];
+   * }}
+   */
+  const url_params = {
+    genre: [],
+    sort_by: [],
+  };
 
   if (genre) {
-    url_params.push(PARAM_GENRE(genre));
+    url_params.genre.push(genre);
   }
 
-  if (sortBy === "imdb") {
-    url_params.push(PARAM_IMDB);
-  } else if (sortBy === "votes") {
-    url_params.push(PARAM_VOTES);
+  if (sortBy?.includes("votes")) {
+    url_params.sort_by.push("-votes");
   }
 
-  return getResults(
-    `${API_URL}${TITLES_ENDPOINT}${
-      url_params.length > 0 ? "?" : ""
-    }${url_params.join("&")}`
-  );
+  if (sortBy?.includes("imdb")) {
+    url_params.sort_by.push("-imdb_score");
+  }
+
+  const url_params_string = Object.keys(url_params)
+    .map((key) => {
+      return url_params[key].length > 0
+        ? `${key}=${url_params[key].join(",")}`
+        : null;
+    })
+    .filter(Boolean)
+    .join("&");
+
+  return getResults(`${API_URL}${TITLES_ENDPOINT}/?${url_params_string}`);
 }
 
 /**

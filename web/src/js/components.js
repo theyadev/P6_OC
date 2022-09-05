@@ -61,22 +61,8 @@ export function generateMovieCard(movie) {
   card_title.classList.add("movie-card__title");
   card_title.textContent = title;
 
-  // Create year
-  const card_year = document.createElement("p");
-  card_year.classList.add("movie-card__year");
-  card_year.textContent = year.toString();
 
-  // Create genres
-  const card_genres = document.createElement("ul");
-  card_genres.classList.add("movie-card__genres");
-  const genre_lis = genres.map((genre) => generateListItem({ text: genre }));
-  card_genres.append(...genre_lis);
-
-  // Create button
-  const card_button = document.createElement("button");
-  card_button.classList.add("movie-card__button");
-  card_button.textContent = "More Info";
-  card_button.onclick = async function (e) {
+  card_image.onclick = async function (e) {
     const title = await getTitleById(id);
 
     populateModal(title);
@@ -85,9 +71,6 @@ export function generateMovieCard(movie) {
   };
 
   card_content.appendChild(card_title);
-  card_content.appendChild(card_year);
-  card_content.appendChild(card_genres);
-  card_content.appendChild(card_button);
 
   card.appendChild(card_image);
   card.appendChild(card_content);
@@ -136,7 +119,7 @@ export function generateCarousel(movies, id) {
   if (movies.length > 4) carousel.appendChild(left_btn);
 
   carousel.appendChild(movies_div);
-  
+
   if (movies.length > 4) carousel.appendChild(right_btn);
 
   section.appendChild(carousel);

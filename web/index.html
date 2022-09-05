@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/css/style.css" />
     <link rel="stylesheet" href="src/css/preflight.css" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <link rel="stylesheet" href="src/css/navbar.css" />
     <script
       src="https://kit.fontawesome.com/6059509ea3.js"
       crossorigin="anonymous"
@@ -13,6 +14,24 @@
     <title>Document</title>
   </head>
   <body>
+    <nav class="navbar">
+      <h1 class="navbar__title">JustStreamIt</h1>
+      <ul class="navbar__items">
+        <li class="navbar__items__item">
+          <a href="#best_rated_movies">Top Rated</a>
+        </li>
+        <li class="navbar__items__item">
+          <a href="#category_1" id="nav_category_1"></a>
+        </li>
+        <li class="navbar__items__item">
+          <a href="#category_2" id="nav_category_2"></a>
+        </li>
+        <li class="navbar__items__item">
+          <a href="#category_3" id="nav_category_3"></a>
+        </li>
+      </ul>
+    </nav>
+
     <div id="modal" class="movie_modal" data-id="0">
       <div class="modal__content">
         <img

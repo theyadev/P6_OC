@@ -31,7 +31,7 @@ export function updateBestMovie(movie) {
 }
 
 export async function populateBestMovies() {
-  const popular = await getTitles({ sortBy: "imdb" });
+  const popular = await getTitles({ sortBy: ["imdb", "votes"] });
 
   generateCarousel(popular, "best_rated_movies");
 }
@@ -42,14 +42,18 @@ export async function populateBestMovies() {
  */
 export async function populateGenre(index, genre) {
   const genre_div = document.getElementById(`category_${index}`);
-  if (genre_div === null) return;
+  const genre_nav = document.getElementById(`nav_category_${index}`);
+
+  if (genre_div === null || genre_nav === null) return;
+
+  genre_nav.textContent = genre.name;
 
   const title = genre_div.querySelector("h3");
 
   if (title === null) return;
   title.innerHTML = genre.name;
 
-  const movies = await getTitles({ genre: genre.name });
+  const movies = await getTitles({ genre: genre.name, sortBy: ["imdb", "votes"] });
 
   generateCarousel(movies, `category_${index}`);
 }
@@ -66,6 +70,6 @@ export async function populateWithRandomGenres() {
 export async function populateMostPopular() {
   const voteddiv = document.getElementById("best_movie");
   if (voteddiv === null) return;
-  const voted = await getTitles({ sortBy: "votes" });
+  const voted = await getTitles({ sortBy: ["votes"] });
   updateBestMovie(voted[0]);
 }
