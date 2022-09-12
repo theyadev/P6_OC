@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="src/css/preflight.css" />
     <link rel="stylesheet" href="src/css/style.css" />
     <link rel="stylesheet" href="src/css/navbar.css" />
+    <link rel="stylesheet" href="src/css/modal.css" />
     <script
       src="https://kit.fontawesome.com/6059509ea3.js"
       crossorigin="anonymous"
@@ -34,45 +35,67 @@
 
     <div id="modal" class="movie_modal" data-id="0">
       <div class="modal__content">
-        <img
-          class="modal__content__image"
-          src="public/placeholder.jpeg"
-          alt="Placeholder's Cover"
-          onerror="this.onerror=null;this.src='public/placeholder.jpeg';"
-        />
-        <h1 class="modal__content__title">Placeholder</h1>
-        <p class="modal__content__description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-          exercitationem harum facilis, libero omnis maiores amet nesciunt! Esse
-          minus, praesentium labore optio voluptates, necessitatibus quod
-          suscipit maiores architecto consequatur quia reiciendis, voluptas
-          dolores nihil atque. Fugit necessitatibus molestias incidunt possimus
-          earum, illo neque ab inventore fuga omnis iusto exercitationem
-          adipisci?
-        </p>
-        <div class="modal__content__details">
-          <ul class="modal__content__details__genres">
-            Genres
-          </ul>
-          <ul class="modal__content__details_directors">
-            Directors
-          </ul>
-          <ul class="modal__content__details__actors">
-            Actors
-          </ul>
+        <div class="modal__content__header">
+          <img
+            class="modal__content__image"
+            src="public/placeholder.jpeg"
+            alt="Placeholder's Cover"
+            onerror="this.onerror=null;this.src='public/placeholder.jpeg';"
+          />
+          <div class="modal__content__header__text">
+            <h1 class="modal__content__title">Placeholder</h1>
+            <ul class="modal__content__details_directors">
+              Directors
+            </ul>
+            <p class="modal__content__description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+              exercitationem harum facilis, libero omnis maiores amet nesciunt!
+              Esse minus, praesentium labore optio voluptates, necessitatibus
+              quod suscipit maiores architecto consequatur quia reiciendis,
+              voluptas dolores nihil atque. Fugit necessitatibus molestias
+              incidunt possimus earum, illo neque ab inventore fuga omnis iusto
+              exercitationem adipisci?
+            </p>
+            <ul class="modal__content__details__genres">
+              Genres
+            </ul>
+          </div>
         </div>
         <div class="modal__content__details">
-          <p class="modal__content__details__date">${date_published}</p>
-          <p class="modal__content__details__rated">${rated}</p>
-          <p class="modal__content__details__score">${imdb_score}</p>
-          <p class="modal__content__details__duration">${duration}</p>
-          <ul class="modal__content__details__countries">
-            ${countriesList}
-          </ul>
-          <p class="modal__content__details__income">
-            ${worldwide_gross_income}
-          </p>
+          <span
+            ><i class="fas fa-clock"></i>
+            <p class="modal__content__details__duration">${duration}</p>
+            <span>mins</span></span
+          >
+          <span
+            ><p class="modal__content__details__score">${imdb_score}</p>
+            <i class="fas fa-star"></i
+          ></span>
+          <span
+            ><i class="fas fa-user"></i>Rated
+            <p class="modal__content__details__rated">${rated}</p></span
+          >
+          <span
+            ><i class="fas fa-calendar"></i>
+            <p class="modal__content__details__date">${date_published}</p></span
+          >
         </div>
+        <ul class="modal__content__details__actors">
+          Actors
+        </ul>
+        <div class="modal__content__details__tiny">
+          <span
+            ><p class="modal__content__details__income">
+              ${worldwide_gross_income}
+            </p>
+            <i class="fas fa-dollar-sign"></i
+          ></span>
+        </div>
+        <ul
+          class="modal__content__details__tiny modal__content__details__countries"
+        >
+          ${countriesList}
+        </ul>
         <button class="modal__content__close-btn" id="close_modal">
           Close
         </button>

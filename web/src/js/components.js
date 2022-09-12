@@ -3,6 +3,12 @@
 import { getTitleById } from "./api.js";
 import { populateModal, toggleModal } from "./modal.js";
 
+const width  = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
+const isMobile = width < 768;
+
+const no_of_movies = isMobile ? 3 : 4;
+
 /**
  * @typedef {import("./api").Movie} Movie
  */
@@ -84,10 +90,10 @@ export function generateMovieCard(movie) {
  * @param {HTMLDivElement} section
  */
 function populateSection(movies, index, section) {
-  const mov = movies.slice(0).splice(index, 4);
+  const mov = movies.slice(0).splice(index, no_of_movies);
 
-  if (mov.length !== 4 && index >= mov.length - 1)
-    mov.push(...movies.slice(0, 4 - mov.length));
+  if (mov.length !== no_of_movies && index >= mov.length - 1)
+    mov.push(...movies.slice(0, no_of_movies - mov.length));
 
   section.replaceChildren(...mov.map(generateMovieCard));
 }
@@ -116,11 +122,11 @@ export function generateCarousel(movies, id) {
   right_btn.classList.add("controls__btn", "right");
   right_btn.innerHTML = '<i class="fas fa-chevron-right"></i>';
 
-  if (movies.length > 4) carousel.appendChild(left_btn);
+  if (movies.length > no_of_movies) carousel.appendChild(left_btn);
 
   carousel.appendChild(movies_div);
 
-  if (movies.length > 4) carousel.appendChild(right_btn);
+  if (movies.length > no_of_movies) carousel.appendChild(right_btn);
 
   section.appendChild(carousel);
 
