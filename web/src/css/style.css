@@ -13,8 +13,28 @@ body {
 
 .container {
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
+}
+
+.container > section:nth-child(2n) {
+  background-color: cadetblue;
+  color: white;
+}
+
+.container > section:nth-child(2n) > h3 {
+  color: white;
+}
+
+.container > section {
+  padding: 2rem 2rem;
+}
+
+section > h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
 .controls {
@@ -24,21 +44,24 @@ body {
 }
 
 .movies {
-  display: flex;
   margin-top: 1rem;
   overflow-x: hidden;
   justify-content: center;
   width: 100%;
   column-gap: 2rem;
   padding: 2rem 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .movie-card {
-  width: 30%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .movie-card__image {
-  width: 100%;
+  /* width: 100%; */
   object-fit: cover;
   background-size: cover;
   background-position: center;
@@ -55,7 +78,7 @@ body {
 .controls__btn {
   padding: 0;
   background-color: white;
-  display:block;
+  display: block;
   width: 5%;
   aspect-ratio: 1/1;
   border-radius: 50%;
@@ -71,9 +94,25 @@ body {
   text-align: center;
   flex-direction: column;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.25rem;
 }
 
+.best-movie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.best-movie__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  padding: 0;
+  text-align: center;
+}
 
 @keyframes bounce {
   0% {

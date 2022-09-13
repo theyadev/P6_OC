@@ -5,9 +5,10 @@ import { populateModal, toggleModal } from "./modal.js";
 
 const width  = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 
-const isMobile = width < 768;
+const isTablet = width < 1024;
+const isMobile = width < 500;
 
-const no_of_movies = isMobile ? 3 : 4;
+const no_of_movies = isMobile ? 1 : isTablet ? 3 : 4;
 
 /**
  * @typedef {import("./api").Movie} Movie

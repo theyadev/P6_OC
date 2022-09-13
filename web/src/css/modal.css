@@ -111,7 +111,6 @@
 }
 
 .modal__content__details {
-  background-color: #888;
   padding: 1rem 0.5rem;
   padding-bottom: 1.5rem;
 }
@@ -168,11 +167,25 @@
 
 @media screen and (max-width: 768px) {
   .modal__content {
-    width: 90%;
+    width: 95%;
+    margin: 0;
+    padding: 1rem;
+  }
+
+  .modal__content__header {
+    flex-direction: column;
+  }
+
+  .modal__content__details__actors {
+    display: none;
   }
 
   .modal__content__header__text {
-    padding-right: 2rem;
+    padding-right: 0;
+  }
+
+  .modal__content__image {
+    display: none;
   }
 
   .modal__content__details__actors {
@@ -182,9 +195,17 @@
   .navbar {
     display: none;
   }
-  
+
   .movie-card__title {
     font-size: 1rem;
+  }
+
+  .container > section {
+    padding: 2rem 1rem;
+  }
+
+  .movies {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -199,5 +220,15 @@
 
   .modal__content__details__actors {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .movies {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .movies {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
