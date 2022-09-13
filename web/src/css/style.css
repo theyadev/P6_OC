@@ -29,6 +29,10 @@ body {
   padding: 2rem 2rem;
 }
 
+.container > * {
+  scroll-margin-top: 4.1rem;
+}
+
 section > h3 {
   font-size: 2rem;
   font-weight: 700;
