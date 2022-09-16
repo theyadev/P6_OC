@@ -118,6 +118,10 @@ section > h3 {
   text-align: center;
 }
 
+.best-movie__image {
+  max-width: 15rem;
+}
+
 @keyframes bounce {
   0% {
     transform: translateY(-500px);

@@ -16,7 +16,7 @@
   </head>
   <body>
     <nav class="navbar">
-      <h1 class="navbar__title">JustStreamIt</h1>
+      <p class="navbar__title">JustStreamIt</p>
       <ul class="navbar__items">
         <li class="navbar__items__item">
           <a href="#best_rated_movies">Top Rated</a>
@@ -45,7 +45,7 @@
           <div class="modal__content__header__text">
             <h1 class="modal__content__title">Placeholder</h1>
             <ul class="modal__content__details_directors">
-              Directors
+              <li>Director</li>
             </ul>
             <p class="modal__content__description">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. At
@@ -57,47 +57,47 @@
               exercitationem adipisci?
             </p>
             <ul class="modal__content__details__genres">
-              Genres
+              <li>Genre</li>
             </ul>
           </div>
         </div>
         <div class="modal__content__details">
-          <span
-            ><i class="fas fa-clock"></i>
+          <div></div>
+            <i class="fas fa-clock"></i>
             <p class="modal__content__details__duration">${duration}</p>
-            <span>mins</span></span
-          >
-          <span
-            ><p class="modal__content__details__score">${imdb_score}</p>
-            <i class="fas fa-star"></i
-          ></span>
-          <span
-            ><i class="fas fa-user"></i>Rated
-            <p class="modal__content__details__rated">${rated}</p></span
-          >
-          <span
-            ><i class="fas fa-calendar"></i>
-            <p class="modal__content__details__date">${date_published}</p></span
-          >
+            <span>mins</span>
+          </div>
+          <div>
+            <p class="modal__content__details__score">${imdb_score}</p>
+            <i class="fas fa-star"></i>
+          </div>
+          <div>
+            <i class="fas fa-user"></i>Rated
+            <p class="modal__content__details__rated">${rated}</p>
+          </div>
+          <div>
+            <i class="fas fa-calendar"></i>
+            <p class="modal__content__details__date">${date_published}</p>
+          </div>
         </div>
         <ul class="modal__content__details__actors">
-          Actors
+          <li>Actors</li>
         </ul>
-        <div style="display:flex;align-items: center;">
-        <div class="modal__content__details__tiny">
-          <span
-            ><p class="modal__content__details__income">
-              ${worldwide_gross_income}
-            </p>
-            <i class="fas fa-dollar-sign"></i
-          ></span>
+        <div style="display: flex; align-items: center">
+          <div class="modal__content__details__tiny">
+            <span
+              ><p class="modal__content__details__income">
+                ${worldwide_gross_income}
+              </p>
+              <i class="fas fa-dollar-sign"></i
+            ></span>
+          </div>
+          <ul
+            class="modal__content__details__tiny modal__content__details__countries"
+          >
+            <li>Countries</li>
+          </ul>
         </div>
-        <ul
-          class="modal__content__details__tiny modal__content__details__countries"
-        >
-          ${countriesList}
-        </ul>
-      </div>
         <button class="modal__content__close-btn" id="close_modal">
           Close
         </button>
@@ -108,8 +108,13 @@
       <!-- Best Movie -->
 
       <div class="best-movie" id="best_movie">
-        <img src="" alt="" id="best_movie_image" />
-        <h1 class="best-movie__title" id="best_movie_title"></h1>
+        <img
+          src="public/placeholder.jpeg"
+          alt="Placeholder's Cover"
+          id="best_movie_image"
+          class="best-movie__image"
+        />
+        <h1 class="best-movie__title" id="best_movie_title">Placeholder</h1>
       </div>
 
       <!-- Most rated movies -->
