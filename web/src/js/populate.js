@@ -1,7 +1,7 @@
 // @ts-check
 
 import { getGenres, getTitles } from "./api.js";
-import { generateCarousel, generateMovieCard } from "./components.js";
+import { generateCarousel } from "./components.js";
 
 /**
  * @typedef {import("./api").Genre} Genre

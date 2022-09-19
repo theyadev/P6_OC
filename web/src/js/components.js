@@ -3,7 +3,7 @@
 import { getTitleById } from "./api.js";
 import { populateModal, toggleModal } from "./modal.js";
 
-const width  = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
 
 const isTablet = width < 1024;
 const isMobile = width < 500;
@@ -68,7 +68,6 @@ export function generateMovieCard(movie) {
   card_title.classList.add("movie-card__title");
   card_title.textContent = title;
 
-
   card_image.onclick = async function (e) {
     const title = await getTitleById(id);
 
@@ -100,6 +99,18 @@ function populateSection(movies, index, section) {
 }
 
 /**
+ * @param {'left' | 'right'} orientation
+ * @returns {HTMLButtonElement}
+ */
+function createButton(orientation) {
+  const btn = document.createElement("button");
+  btn.classList.add("controls__btn", orientation);
+  btn.innerHTML = `<i class="fas fa-chevron-${orientation}"></i>`;
+
+  return btn
+}
+
+/**
  * @param {Movie[]} movies
  * @param {string} id
  */
@@ -112,40 +123,40 @@ export function generateCarousel(movies, id) {
 
   carousel.classList.add("controls");
 
-  const left_btn = document.createElement("button");
-  left_btn.classList.add("controls__btn", "left");
-  left_btn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-
   const movies_div = document.createElement("div");
   movies_div.classList.add("movies");
 
-  const right_btn = document.createElement("button");
-  right_btn.classList.add("controls__btn", "right");
-  right_btn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+  if (movies.length > no_of_movies) {
+    const left_btn = createButton("left");
 
-  if (movies.length > no_of_movies) carousel.appendChild(left_btn);
+    carousel.appendChild(left_btn);
+
+    left_btn.onclick = () => {
+      if (current_index === 0) current_index = max_index;
+      else current_index--;
+      populateSection(movies, current_index, movies_div);
+    };
+  }
 
   carousel.appendChild(movies_div);
 
-  if (movies.length > no_of_movies) carousel.appendChild(right_btn);
+  if (movies.length > no_of_movies) {
+    const right_btn = createButton("right");
+
+    carousel.appendChild(right_btn);
+
+    right_btn.onclick = () => {
+      if (current_index === max_index) current_index = 0;
+      else current_index++;
+      populateSection(movies, current_index, movies_div);
+    };
+  }
 
   section.appendChild(carousel);
 
   let current_index = 0;
 
   const max_index = movies.length - 1;
-
-  left_btn.onclick = () => {
-    if (current_index === 0) current_index = max_index;
-    else current_index--;
-    populateSection(movies, current_index, movies_div);
-  };
-
-  right_btn.onclick = () => {
-    if (current_index === max_index) current_index = 0;
-    else current_index++;
-    populateSection(movies, current_index, movies_div);
-  };
 
   populateSection(movies, current_index, movies_div);
 }

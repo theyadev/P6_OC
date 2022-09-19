@@ -93,17 +93,11 @@ export async function getTitles({ genre, sortBy }) {
     sort_by: [],
   };
 
-  if (genre) {
-    url_params.genre.push(genre);
-  }
+  if (genre) url_params.genre.push(genre);
 
-  if (sortBy?.includes("votes")) {
-    url_params.sort_by.push("-votes");
-  }
+  if (sortBy?.includes("votes")) url_params.sort_by.push("-votes");
 
-  if (sortBy?.includes("imdb")) {
-    url_params.sort_by.push("-imdb_score");
-  }
+  if (sortBy?.includes("imdb")) url_params.sort_by.push("-imdb_score");
 
   const url_params_string = Object.keys(url_params)
     .map((key) => {
